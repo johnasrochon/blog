@@ -5,10 +5,18 @@
     <title>About Me</title>
 </head>
 <body>
+    {% extends "base.html" %}
+
+{% block title %}About Me{% endblock %}
+
+{% block content %}
     <h1>About Me</h1>
     <p>
-        I am a cloud engineer with a strong interest in network, user-friendly web
-        applications and continuously improving my technical skills.
+        I am a cloud engineer who enjoys building web applications, learning new
+        technologies, and improving problem-solving skills through hands-on projects.
     </p>
+{% endblock %}
+
+
 </body>
 </html>
