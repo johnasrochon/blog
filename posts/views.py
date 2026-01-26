@@ -1,24 +1,40 @@
-from django.shortcuts import render
-
-# Create your views here.
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
 from .models import Post
 
-class MessageBoardView(ListView):
+
+class PostListView(ListView):
     model = Post
-    template_name = "posts/message_board.html"
+    template_name = "posts/post_list.html"
 
-class PostDraftListView(ListView):
+
+class PostDetailView(DetailView):
     model = Post
-    template_name = "posts/post_draft_list.html"
-
-    def get_queryset(self):
-        return Post.objects.filter(status=Post.DRAFT)
+    template_name = "posts/post_detail.html"
 
 
-class PostArchivedListView(ListView):
+class PostCreateView(CreateView):
     model = Post
-    template_name = "posts/post_archived_list.html"
+    fields = ["text", "status"]
+    template_name = "posts/post_form.html"
+    success_url = reverse_lazy("post_list")
 
-    def get_queryset(self):
-        return Post.objects.filter(status=Post.ARCHIVED)
+
+class PostUpdateView(UpdateView):
+    model = Post
+    fields = ["text", "status"]
+    template_name = "posts/post_form.html"
+    success_url = reverse_lazy("post_list")
+
+
+class PostDeleteView(DeleteView):
+    model = Post
+    template_name = "posts/post_confirm_delete.html"
+    success_url = reverse_lazy("post_list")
+
