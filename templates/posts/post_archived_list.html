@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Archived Posts{% endblock %}
+
+{% block content %}
+<h1>Archived Posts</h1>
+
+<ul>
+    {% for post in object_list %}
+        <li>{{ post.text }}</li>
+    {% empty %}
+        <li>No archived posts.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

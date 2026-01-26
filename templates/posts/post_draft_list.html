@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Draft Posts{% endblock %}
+
+{% block content %}
+<h1>Draft Posts</h1>
+
+<ul>
+    {% for post in object_list %}
+        <li>{{ post.text }}</li>
+    {% empty %}
+        <li>No draft posts.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
